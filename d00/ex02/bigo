@@ -1,0 +1,3 @@
+best = O(1)
+average = O(logn)
+space = O(1)
