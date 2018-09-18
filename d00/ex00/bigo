@@ -1,2 +1,4 @@
-O(n) time, with n the number of elements in the array.
-O(1) space.
+time - O(n) time
+space - O(1)
+
+as n = number of elemnets in array

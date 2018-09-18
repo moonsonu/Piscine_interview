@@ -1,3 +1,4 @@
-average, best = O(nlogn)
-worst = O(n^2)
-space = O(logn)
+time - O(n^2)
+space - O(logn)
+
+as n = number of elements in array

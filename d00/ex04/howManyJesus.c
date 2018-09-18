@@ -1,44 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   howManyJesus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/18 09:26:35 by ksonu             #+#    #+#             */
+/*   Updated: 2018/09/18 14:24:13 by ksonu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
+#include <string.h>
 
-#define d 256
+#define D 256
+#define Q 101
 
-static int		howManyJesus(char *bible, char *jesus)
+static int	gethvalue(int len, char *str)
 {
-	int	m;
-	int	n;
-	int	i;
-	int	j;
-	int	p = 0;
-	int	t = 0;
-	int	h = 1;
-	int	q = 10;
-	m = strlen(bible);
-	n = strlen(jesus);
+	int		i;
+	int		hvalue = 0;
 
-	for (i = 0; i < m - 1; i++)
-		h = (h * d) % q;
-	for (i = 0; i < m; i++)
+	i = 0;
+	while (i < len)
 	{
-		p = ( d * p + bible[i]) % q;
-		t = (d * t + jesus[i]) % q;
+		hvalue = ((D * hvalue) + str[i]) % Q;
+		i++;
 	}
-	for (i = 0; i <= n - m; i++)
+	return (hvalue);
+}
+
+int		howManyJesus(char *bible, char *jesus)
+{
+	int		b = strlen(bible);
+	int		j = strlen(jesus);
+	int		bhvalue;
+	int		jhvalue;
+	int		i;
+	int		k;
+	int		count;
+	int		h;
+
+	if (b < j)
+		return (0);
+	if (!bible || !jesus)
+		return (0);
+	i = 0;
+	h = 1;
+	count = 0;
+	for (i = 0; i < j - 1; i++)
+		h = (h * D) % Q;
+	bhvalue = gethvalue(j, bible);
+	jhvalue = gethvalue(j, jesus);
+	i = 0;
+	while (i < (b - j) - 1)
 	{
-		if (p == t)
+		if (bhvalue == jhvalue)
 		{
-			for (j = 0; j < M; j++)
-			{
-				if (jesus[i + j] != bible[j])
+			for (k = 0; k < j; k++)
+				if (bible[i + k] != jesus[k])
 					break;
-			}
-			if (j == m)
-				return (i);
+			count += (k < j) ? 0 : 1;
+			//if (k == j)
+			//	count += 1;
 		}
-		if (i < (n - m))
+		if (i < (b - j))
 		{
-			t = (d * (t - jesus[i] * h) + jesus[i + m]) % q;
-			if (t < 0)
-				t = (t + q);
+			bhvalue = (D * (bhvalue - bible[i] * h) + bible[i + j]) % Q;
+			if (bhvalue < 0)
+				bhvalue = bhvalue + Q;
 		}
+		i++;
 	}
+	return (count);
 }

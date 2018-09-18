@@ -1,4 +1,4 @@
-time - O(logn)
-space -  O(n)
+time - O(n)
+space - O(n)
 
 as n = number of elements in array
