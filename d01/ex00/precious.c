@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:20:45 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/18 17:54:35 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/09/18 19:29:49 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,22 @@ char	*precious(int *text, int size)
 	int				i;
 	struct s_node	*node;
 	char			*result;
-
+	int				j;
+	
+	i = 0;
+	j = 1;
 	result = (char*)malloc(sizeof(char) * size);
 	addnode(node = (struct s_node*)malloc(sizeof(struct s_node)));
-	struct s_node *tmp = node;
-	for (i = 0; i < 80; i++)
+	while (i < size)
 	{
-		printf("%c\n", tmp->c);
-		tmp = tmp->prev;
-	}
-	for (i = 0; i < size; i++)
-	{
-		printf("%d\n", text[i]);
-		while (text[i] != 0)
+		while (text[i])
 		{
-			(text[i] > 0) ? (text[i] += 1) : (text[i] -= 1);
-			if (text[i] == 0)
-				break;
+			node = (text[i] < 0) ? node->prev : node->next;
+			if (node->c != '\0')
+				(text[i] < 0) ? (text[i] += 1) : (text[i] -= 1);
 		}
-		result[i] = CS[text[i]];
+		result[i] = node->c;
+		i++;
 	}
 	return (result);
 }

@@ -1,0 +1,4 @@
+time - O(n)
+space - O(n)
+
+as n = the number of list
