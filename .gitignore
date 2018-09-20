@@ -10,6 +10,12 @@ reverseV2
 console
 queue
 tank
+sortStone
+insertionSort
+quickSort
+mergeSort
+countSort
+findShifted
 
 # Prerequisites
 *.d
