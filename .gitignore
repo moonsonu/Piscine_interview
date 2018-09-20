@@ -7,6 +7,9 @@ compress
 precious
 reverse
 reverseV2
+console
+queue
+tank
 
 # Prerequisites
 *.d

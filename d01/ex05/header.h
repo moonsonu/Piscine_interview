@@ -40,6 +40,6 @@ int tankPop(struct s_tank *tank);
 /*--------------------------------
   &  your own other function
   --------------------------------*/
-
-
+struct s_elem *initElem(void);
+struct s_stack *initStack(void);
 #endif

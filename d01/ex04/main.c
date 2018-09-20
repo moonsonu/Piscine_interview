@@ -7,17 +7,27 @@
 
 int main(void)
 {
-	//struct s_tank *tank = initTank();
-
 	/*-------------------
 	launch your test here
 	--------------------*/
-	//tankPush(tank, 10);
-	//tankPush(tank, 50);
+	struct s_queue	*queue;
+
+	queue = queueInit();
+	
+	enqueue(queue, "4");
+	enqueue(queue, "8");
+	enqueue(queue, "15");
+	enqueue(queue, "16");
+	enqueue(queue, "23");
+	enqueue(queue, "42");
+	printf("peek : %s\n", peek(queue));
+	while (!isEmpty(queue))
+	//	printf("1\n");
+		printf("dequeue : %s\n", dequeue(queue));
 	return (0);
 }
 
 
-
 // Function used for the test
 // Don't go further :)
+
