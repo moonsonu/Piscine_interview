@@ -17,6 +17,8 @@ mergeSort
 countSort
 findShifted
 findPotentialCriminels
+printYoungest
+info
 
 # Prerequisites
 *.d
