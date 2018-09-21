@@ -16,6 +16,7 @@ quickSort
 mergeSort
 countSort
 findShifted
+findPotentialCriminels
 
 # Prerequisites
 *.d

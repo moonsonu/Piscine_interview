@@ -24,4 +24,6 @@ void printPlayers(struct s_player **players);
 /*--------------------------------
   &  your own other function
   --------------------------------*/
+int		partition(struct s_player **players, int left, int right);
+void	quick_sort(struct s_player **players, int left, int right);
 #endif

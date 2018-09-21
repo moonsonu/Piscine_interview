@@ -26,5 +26,6 @@ void printPlayers(struct s_player **players);
   &  your own other function
   --------------------------------*/
 
-
+void				merge(struct s_player **player, int l, int m, int r);
+void				divide(struct s_player **player, int l, int r);
 #endif

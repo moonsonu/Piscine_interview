@@ -36,6 +36,7 @@ struct s_info *getInfo(char *description);
 /*--------------------------------
   &  your own other function
   --------------------------------*/
-
+void	countSort(struct s_criminal **c, int exp, int n);
+int		binarySearch(struct s_criminal **c, int l, int r, int d);
 
 #endif

@@ -1,6 +1,8 @@
 #ifndef HEADER_H
 # define HEADER_H
 
+# define NUM 15
+
 /*--------------------------------
   !! required structure
   --------------------------------*/

@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 02:58:45 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/20 04:15:47 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/09/20 13:50:09 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,32 @@ void				merge(struct s_player **player, int l, int m, int r)
 	int		j;
 	int		k;
 	int		z;
-	struct	s_player	*tmp;
+	struct	s_player	**tmp;
 
 	i = l;
 	j = m + 1;
 	k = l;
 
-	tmp = player[i];
+	tmp = player;
 	while (i <= m && j <= r)
 	{
 		if (player[i]->score <= player[j]->score)
-			tmp[k++] = *player[i++];
+			tmp[k++] = player[i++];
 		else
-			tmp[k++] = *player[j++];
+			tmp[k++] = player[j++];
 	}
 	if (i < m)
 	{
 		for (l = j; l <= r; l++)
-			tmp[k++] = *player[l];
+			tmp[k++] = player[l];
 	}
 	else
 	{
 		for(l = i; l <= m; l++)
-			tmp[k++] = *player[l];
+			tmp[k++] = player[l];
 	}
 	for (z = l; z <= r; z++)
-		player[z] = &tmp[z];
+		player[z] = tmp[z];
 }
 
 void				divide(struct s_player **player, int l, int r)
