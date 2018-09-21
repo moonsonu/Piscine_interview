@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 22:47:54 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/20 22:50:17 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/09/20 22:51:28 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void	printYoungest(int *ages, int length)
 		ages[(length - 1) - i] = tmp;
 		sink(ages, 0, (length - 1) - i - 1);
 	}
-	printf("Youngest: %d\n", ages[0]);
+	printf("Youngest : %d\n", ages[0]);
 }
