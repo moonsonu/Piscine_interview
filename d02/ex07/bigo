@@ -1,0 +1,4 @@
+time - O(nlogn)
+space - O(n)
+
+as n = length of array
