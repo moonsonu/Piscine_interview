@@ -20,6 +20,7 @@ findPotentialCriminels
 printYoungest
 info
 createBST
+findParent
 
 # Prerequisites
 *.d

@@ -6,27 +6,13 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 21:33:18 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/21 00:00:59 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/09/21 13:36:58 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <stdlib.h>
 #include <string.h>
-
-struct s_info	infoInit(void)
-{
-	struct s_info	info;
-
-	info.min = 0;
-	info.max = 0;
-	info.elements = 0;
-	info.height = 0;
-	info.isBST = 0;
-	info.isBalanced = 0;
-
-	return (info);
-}
 
 int				getMin(struct s_node *root)
 {
@@ -109,20 +95,20 @@ int				getisBalanced(struct s_node *root)
 	int		lh;
 	int		rh;
 
+	lh = 0;
+	rh = 0;
 	if (!root)
 		return (0);
 	lh = getHeight(root->left);
 	rh = getHeight(root->right);
-	if (abs(lh - rh) <= 1 && getisBalanced(root->left) && getisBalanced(root->right))
-		return (1);
-	return (0);
+	if ((lh - rh >= 2) || (rh- lh >= 2))
+		return (0);
+	return (1);
 }
-
-struct s_info	getnfo(struct s_node *root)
+struct s_info	getInfo(struct s_node *root)
 {
 	struct s_info	info;
 
-	info = infoInit();
 	info.min = getMin(root);
 	info.max = getMax(root);
 	info.elements = getElements(root);

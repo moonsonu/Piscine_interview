@@ -36,5 +36,10 @@ void    printTreeInfo(struct s_info info); //print the info from a binary tree
 /*--------------------------------
   &  your own other stuff
   --------------------------------*/
-
+int				getMin(struct s_node *root);
+int				getMax(struct s_node *root);
+int				getElements(struct s_node *root);
+int				getHeight(struct s_node *root);
+int				getisBst(struct s_node *root);
+int				getisBalanced(struct s_node *root);
 #endif
