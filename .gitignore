@@ -21,6 +21,17 @@ printYoungest
 info
 createBST
 findParent
+decrypt
+bit
+shift
+xor
+getPlace
+clearPlace
+setPlace
+updatePlace
+isFilled
+occupiedPlaces
+carPosition
 
 # Prerequisites
 *.d
