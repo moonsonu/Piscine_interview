@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isFilled.c                                         :+:      :+:    :+:   */
+/*   occupiedPlaces.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 00:25:26 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/25 01:27:19 by ksonu            ###   ########.fr       */
+/*   Created: 2018/09/25 01:28:00 by ksonu             #+#    #+#             */
+/*   Updated: 2018/09/25 01:34:25 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
-int		isFilled(unsigned int parkingRow)
+int		occupiedPlaces(unsigned int parkingRow)
 {
-	return (parkingRow & 1);
+	int		count = 0;
+	while (parkingRow != 0)
+	{
+		parkingRow &= (parkingRow - 1);
+		count++;
+	}
+	return (count);
 }

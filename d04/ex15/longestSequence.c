@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isFilled.c                                         :+:      :+:    :+:   */
+/*   longestSequence.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 00:25:26 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/25 01:27:19 by ksonu            ###   ########.fr       */
+/*   Created: 2018/09/25 02:39:00 by ksonu             #+#    #+#             */
+/*   Updated: 2018/09/25 02:49:56 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
-int		isFilled(unsigned int parkingRow)
+int		longestSequence(unsigned int parkingRow)
 {
-	return (parkingRow & 1);
+
 }

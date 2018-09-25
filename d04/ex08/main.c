@@ -18,7 +18,6 @@ int main(int ac, char **av)
 	/*-------------------
 	launch your test here
 	--------------------*/
-	printf("%d\n", isFilled(parkingRow));
 	printf("Parking row %d is%s filled from right to left\n", parkingRow, (isFilled(parkingRow)) ? "" : " not");
 
 	return (0);

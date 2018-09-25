@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isFilled.c                                         :+:      :+:    :+:   */
+/*   clearBits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 00:25:26 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/25 01:27:19 by ksonu            ###   ########.fr       */
+/*   Created: 2018/09/25 02:01:20 by ksonu             #+#    #+#             */
+/*   Updated: 2018/09/25 02:23:17 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
-int		isFilled(unsigned int parkingRow)
+unsigned int	clearBits(unsigned int parkingRow, int n)
 {
-	return (parkingRow & 1);
+	return ((parkingRow >> n) << n);
 }
