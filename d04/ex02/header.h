@@ -21,6 +21,6 @@ int checkBinary(char *str);
 /*--------------------------------
   &  your own other function
   --------------------------------*/
-
+void	*getnegative(char *bits);
 
 #endif
