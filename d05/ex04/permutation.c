@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bestPrice.c                                        :+:      :+:    :+:   */
+/*   permutation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 22:11:11 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/26 10:57:25 by ksonu            ###   ########.fr       */
+/*   Created: 2018/09/26 12:34:24 by ksonu             #+#    #+#             */
+/*   Updated: 2018/09/26 13:53:38 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <stdio.h>
-#define MAX(a, b) ((a > b) ? a : b)
+#include <string.h>
 
-void	recurse(double current, double *best, double *price, int n)
+void	swap(char *str, int start, int end)
 {
-	if (n == 0) {
-		*best = MAX(current, *best);
-		return ;
-	} for (int i = 1; i <= n; i++)
-			recurse(current + price[i], best, price, n - i);
+	char	tmp = str[start];
+	str[start] = str[end];
+	str[end] = tmp;
 }
 
-double	bestPrice(int pizzaSize, double *prices)
+void	permutation(int n, int k, int depth, char *str)
 {
-	double	best;
+	if (depth == k)
+		printf("%s\n", str);
+	for (int i = depth; i < n; i++)
+	{
+		swap(str, i, depth);
+		permutation(n, k, depth + 1, str);
+		swap(str, i, depth);
+	}
+}
 
-	recurse(0, &best, prices, pizzaSize);
-	return (best);
+void	printPermutations(char *str)
+{
+	permutation((int)strlen(str), (int)strlen(str), 0, str);
 }

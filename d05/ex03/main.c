@@ -5,19 +5,18 @@
 
 #include "header.h"
 
-int main(int ac, char **av)
+int main(void)
 {
-        int pizzaSize = 3;
-        struct s_prices *pricesCont; //just a container which store the array of prices and it's associated length
+	int **map;
 
-        pricesCont = readList();
+	map = readMap("map.txt");
 
-        if (ac >= 2)
-                pizzaSize = atoi(av[1]);
+	printMap(map);
 	/*-------------------
 	launch your test here
 	--------------------*/
-        // printf("%d : %.2f\n", pizzaSize, optimizedBestPrice(pizzaSize, pricesCont->items));
+	sinkIsland(map, 1, 4);
+	printMap(map);
 
 	return (0);
 }
@@ -25,19 +24,30 @@ int main(int ac, char **av)
 // Function used for the test
 // Don't go further :)
 
+void	printMap(int **map)
+{
+	printf("map: \n");
+	for (int row = 0; map[row]; row++)
+	{
+		for (int col = 0; map[row][col] != -1; col++)
+		{
+			printf("%d ", map[row][col]);
+		}
+		printf("\n");
+	}
+}
+
 /*
 **	PARSING
 */
 
-#define FILENAME "list.txt"
-
-char    *readFile(void)
+char    *readFile(char *filename)
 {
         char *fcontent = NULL;
         int size = 0;
         FILE *fp;
 
-        if (NULL == (fp = fopen(FILENAME, "r")))
+        if (NULL == (fp = fopen(filename, "r")))
                 return (NULL);
         fseek(fp, 0L, SEEK_END);
         size = ftell(fp);
@@ -49,7 +59,7 @@ char    *readFile(void)
         return (fcontent);
 }
 
-void    readList_leave(void){
+void    readMap_leave(void){
         dprintf(STDERR_FILENO, "failed to load the file.\n");
         exit(0);
 }
@@ -106,38 +116,37 @@ char    **split(char *str, char *delimiter){
         return (tab);
 }
 
-struct s_prices *readList()
+int **readMap(char *filename)
 {
-        struct s_prices *list;
+	int **map;
         char *file;
         char **splitted;
         char **secondSplit;
+	int len2;
         int len;
 
         dprintf(STDOUT_FILENO, "(INFO) Loading the file... ");
-        if (NULL == (file = readFile()))
-                readList_leave();       
+        if (NULL == (file = readFile(filename)))
+                readMap_leave();       
         splitted = split(file, "\n");
         for (len = 0; splitted[len]; len++)
                 ;
-        list = malloc(sizeof(struct s_prices));
-        list->length = len+1;
-        if (!(list->items = malloc(sizeof(double) * (len+1))))
-                readList_leave();
-        len = 1;
-	list->items[0] = 0;
+        if (!(map = malloc(sizeof(int *) * (len+1))))
+                readMap_leave();
+        len = 0;
         for (int i = 0; splitted[i]; i++)
         {
-                secondSplit = split(splitted[i], ":");
-                if (!(secondSplit && secondSplit[0] && secondSplit[1] && !secondSplit[2]))
-                        continue;
-                if (len != atoi(secondSplit[0])){
-                        dprintf(STDERR_FILENO, "error in the parsing!\n");
-                        exit(0);
-                }
-                list->items[len] = atof(secondSplit[1]);
+                secondSplit = split(splitted[i], " ");
+		for (len2 = 0; secondSplit[len2]; len2++)
+			;
+		map[len] = malloc(sizeof(int) * (len2 + 1));
+		for (int a = 0; a < len2; a++){
+			map[len][a] = atoi(secondSplit[a]);
+		}
+		map[len][len2] = -1;
                 len += 1;
         }
+	map[len] = NULL;
         printf("finish!\n");
-        return (list);
+        return (map);
 }

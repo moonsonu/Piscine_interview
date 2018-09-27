@@ -1,0 +1,4 @@
+time - O(n!)
+space - O(1)
+
+as n = elements is the string

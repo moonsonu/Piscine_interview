@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bestPrice.c                                        :+:      :+:    :+:   */
+/*   makeThemEat.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 22:11:11 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/26 10:57:25 by ksonu            ###   ########.fr       */
+/*   Created: 2018/09/26 17:17:48 by ksonu             #+#    #+#             */
+/*   Updated: 2018/09/26 19:50:50 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <stdio.h>
-#define MAX(a, b) ((a > b) ? a : b)
 
-void	recurse(double current, double *best, double *price, int n)
+int		available(struct s_people **people, int nbTable, int totalTime)
 {
-	if (n == 0) {
-		*best = MAX(current, *best);
-		return ;
-	} for (int i = 1; i <= n; i++)
-			recurse(current + price[i], best, price, n - i);
+	int  tmp = 0;
+	if (nbTable == 0 || tmp == totalTime)
+		return (0);
+	for (int i = 0; i < nbTable; i++)
+	{
+		tmp += people[i]->time;
+		available(people, nbTable - 1, tmp);
+		tmp = 0;
+	}
+	return (tmp);
 }
 
-double	bestPrice(int pizzaSize, double *prices)
+int		isPossible(struct s_people **people, int nbTable, int totalTime)
 {
-	double	best;
-
-	recurse(0, &best, prices, pizzaSize);
-	return (best);
+	if (!available(people, nbTable, totalTime))
+		return (1);
+	return (0);
 }

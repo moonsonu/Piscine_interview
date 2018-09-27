@@ -1,0 +1,4 @@
+time - O(n*m)
+space - O(1)
+
+as n = rows, m = cols

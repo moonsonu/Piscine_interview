@@ -32,7 +32,13 @@ updatePlace
 isFilled
 occupiedPlaces
 carPosition
-
+possibleSlices
+bestPrice
+bestPriceV2
+sinkIsland
+Scrabble
+permutationV2
+makeThemEat
 # Prerequisites
 *.d
 

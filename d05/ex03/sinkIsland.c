@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bestPrice.c                                        :+:      :+:    :+:   */
+/*   sinkIsland.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 22:11:11 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/26 10:57:25 by ksonu            ###   ########.fr       */
+/*   Created: 2018/09/26 01:33:48 by ksonu             #+#    #+#             */
+/*   Updated: 2018/09/26 12:33:32 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <stdio.h>
-#define MAX(a, b) ((a > b) ? a : b)
 
-void	recurse(double current, double *best, double *price, int n)
+void	sinkIsland(int **map, int row, int col)
 {
-	if (n == 0) {
-		*best = MAX(current, *best);
+	if (map[row] == 0 || map[row][col] == -1 || map[row][col] == 0 ||
+			col < 0 || row < 0)
 		return ;
-	} for (int i = 1; i <= n; i++)
-			recurse(current + price[i], best, price, n - i);
-}
-
-double	bestPrice(int pizzaSize, double *prices)
-{
-	double	best;
-
-	recurse(0, &best, prices, pizzaSize);
-	return (best);
+	map[row][col] = 0;
+	sinkIsland(map, row, col - 1);
+	sinkIsland(map, row, col + 1);
+	sinkIsland(map, row - 1 , col);
+	sinkIsland(map, row + 1, col);
 }
