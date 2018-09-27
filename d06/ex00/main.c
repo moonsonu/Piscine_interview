@@ -7,23 +7,27 @@
 
 int main(int ac, char **av)
 {
-	double initDollars = 0.0;
-	double desiredDollars = 0.0;
-	int nbGame = 0;
-	
+	int *arr;
+	int n;
+	int dist;
+
 	if (ac >= 4){
-		initDollars = atof(av[1]);
-		desiredDollars = atof(av[2]);
-		nbGame = atoi(av[3]);
+		dist = atoi(av[1]);
+		n = ac-2;
+		arr = malloc(sizeof(int) * (n));
+		for (int i = 2; i < ac; i++){
+			arr[i-2] = atoi(av[i]);
+		}
 	}
-	else{
-		printf("Usage: ./roulette initDollars desiredDollars nbGame\n");
+	else {
+		printf("Usage: ./distance dist nb1 nb2 ...\n");
 		return (0);
 	}
 	/*-------------------
 	launch your test here
 	--------------------*/
-	// printf("%lf\n", probabilityWin(initDollars, desiredDollars, nbGame));
+	printf("%lf\n", probaDistance(dist, arr, n));
+
 	return (0);
 }
 
