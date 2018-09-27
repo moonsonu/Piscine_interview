@@ -39,6 +39,12 @@ sinkIsland
 Scrabble
 permutationV2
 makeThemEat
+probaDistance
+hotspots
+roulette
+minPersons
+knightOut
+helpNephew
 # Prerequisites
 *.d
 

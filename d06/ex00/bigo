@@ -1,0 +1,2 @@
+time - O(n*(n-1))
+space - O(1)
