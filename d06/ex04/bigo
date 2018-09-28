@@ -1,2 +1,2 @@
-time - O()
-space - O()
+time - O(n^2)
+space - O(n)

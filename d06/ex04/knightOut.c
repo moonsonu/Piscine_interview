@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 17:01:16 by ksonu             #+#    #+#             */
-/*   Updated: 2018/09/27 21:27:21 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/09/27 21:53:13 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,16 @@ int		getInitialPos(uint64_t board)
 	return (pos);
 }
 
-double	probability(int **check, int x, int y, int n)
+double	probability(int ***check, int x, int y, int n)
 {
-	double		p = 1;
+	double		p = 1.0;
 
 	if ((x < 0 || x > 7) || (y < 0 || y > 7))
-	{
-		printf("0000000 x %d y %d p %f\n", x, y, p);
 		return (1);
-	}
 	if (n == 0 && (x >= 0 && x <= 7) && (y >= 0 && y <= 7))
-	{
-		printf("1111111 x %d y %d p %f\n", x, y, p);
 		return (0);
-	}
-	if (check[x][y])
-		return (p);
-	check[x][y] = 1;
+	if (check[x][y][n])
+		return (check[x][y][n]);
 	p = probability(check, x - 2, y + 1, n - 1) * 0.125
 		+ probability(check, x - 2, y - 1, n - 1) * 0.125
 		+ probability(check, x - 1, y + 2, n - 1) * 0.125
@@ -45,25 +38,29 @@ double	probability(int **check, int x, int y, int n)
 		+ probability(check, x + 2, y - 1, n - 1) * 0.125
 		+ probability(check, x - 1, y - 2, n - 1) * 0.125
 		+ probability(check, x + 1, y - 2, n - 1) * 0.125;
-	//printf("x %d y %d n %d p %f\n", x, y, n, p);
+	check[x][y][n] = p;
 	return (p);
 }
 
-int		**initMap()
+int		***initMap()
 {
-	int		**map = (int**)malloc(sizeof(int*) * 8);
+	int		***map = (int***)malloc(sizeof(int**) * 8);
 	for (int i = 0; i < 8; i++)
 	{
-		map[i] = (int*)malloc(sizeof(int) * 8);
+		map[i] = (int**)malloc(sizeof(int*) * 8);
 		for (int j = 0; j < 8; j++)
-			map[i][j] = 0;
+		{
+			map[i][j] = (int*)malloc(sizeof(int) * 8);
+			for (int k = 0; k < 8; k++)
+				map[i][j][k] = 0;
+		}
 	}
 	return (map);
 }
 
 double	knightOut(uint64_t board, int n)
 {
-	int		**map;
+	int		***map;
 	int		i;
 	int		j;
 	int		pos = getInitialPos(board);
